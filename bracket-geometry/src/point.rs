@@ -6,6 +6,7 @@ use ultraviolet::Vec2;
 pub type PointF = Vec2;
 
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = "bevy", derive(bevy::ecs::component::Component))]
 #[derive(Eq, PartialEq, Copy, Clone, Debug, Hash)]
 /// Helper struct defining a 2D point in space.
 pub struct Point {
@@ -18,11 +19,6 @@ pub struct Point {
 #[cfg(feature = "specs")]
 impl specs::prelude::Component for Point {
     type Storage = specs::prelude::VecStorage<Self>;
-}
-
-#[cfg(feature = "bevy")]
-impl bevy::ecs::component::Component for Point {
-    type Storage = bevy::ecs::component::TableStorage;
 }
 
 impl Point {
@@ -80,9 +76,9 @@ impl Point {
     }
 
     /// Converts the point to a usize tuple
-    /// 
+    ///
     /// # Panics
-    /// 
+    ///
     /// This can panic if X or Y are not convertible to a `usize`.
     #[must_use]
     pub fn to_unsigned_tuple(self) -> (usize, usize) {
