@@ -6,7 +6,7 @@ use ultraviolet::Vec2;
 pub type PointF = Vec2;
 
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-#[cfg_attr(feature = "bevy", derive(bevy::ecs::component::Component))]
+#[cfg_attr(feature = "bevy", derive(bevy::ecs::component::Component, bevy::ecs::system::Resource))]
 #[derive(Eq, PartialEq, Copy, Clone, Debug, Hash)]
 /// Helper struct defining a 2D point in space.
 pub struct Point {
